@@ -1,5 +1,225 @@
 @charset "utf-8";
 
-h1 {
-  color: blue;
+body  {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+
+
+}
+
+
+.gauche{
+  border-right: 1px solid #f6f7f9;
+  height: 100vh;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  
+ 
+
+  
+} 
+
+.user{
+height: 100px;
+  border-bottom: 2px solid #f6f7f9;
+  backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+     
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 0;
+      margin-right: 0;
+
+} 
+
+.mssga{
+  display: flex;
+  align-items: flex-end;
+  
+} 
+
+.mssga img{
+ 
+  margin-right: 10px;
+
+}
+.droites{
+  height: 100vh;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+
+}
+
+
+.message-container {
+
+  
+  overflow-y: auto; /* Activez le défilement vertical */
+  height: 76vh;
+ /* background-image: url('Design sans titre-63.png'); /* Chemin vers votre image */
+  background-size: cover; /* Ajuste la taille de l'image pour couvrir l'ensemble de l'élément */
+  background-repeat: no-repeat;
+  padding:10px;
+  background-color: #f6f7f9;
+  
+} 
+
+.bot-container {
+  overflow-y: auto;
+  height: 68vh;
+  overflow-x: hidden;
+}
+
+.mssg{
+  border-top: 2px solid #d9d9d9;
+  height: 70px;
+ 
+} 
+
+.logo{
+ width: 50px;
+ margin-left: 30px;
+ margin-top: 15px;
+} 
+
+.btn btn-outline-secondary {
+  color: #fff; /* Couleur du texte */
+  background-color: #007bff; /* Couleur de fond bleue */
+  border-color: #007bff; /* Couleur de la bordure */
+}
+
+.btn btn-outline-secondary:hover {
+  color: #fff; /* Couleur du texte au survol */
+  background-color: #28a745; /* Couleur de fond verte au survol */
+  border-color: #28a745; /* Couleur de la bordure au survol */
+}
+
+.card {
+  margin-right: 15px;
+  border-radius: 10px 10px 10px 0px;
+
+
+}
+p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.row{
+  margin-left: 0;
+  padding-left: 0;
+}  
+
+.you{
+  color:black;
+  
+} 
+
+body {
+/* Fond blanc */
+  background-color: #ffffff;
+}
+
+.card {
+  background-color:white; 
+}
+
+#aa{
+ background-color:  #edf1fd;
+ border-radius: 10px 10px 0 10px;
+}
+h2 ,h3 ,h5 ,p {
+  color: #112D4E;
+}
+/* Styles pour les différents éléments texte */
+
+
+
+
+.lista {
+  background-color: #494beb;
+ width: 85%;
+ border-radius: 8px;
+
+ 
+  
+}
+.lista h5{
+  color:white;
+}
+
+.lista p{
+  color:white;
+}
+
+.list{
+  width: 85%;
+ border-radius: 8px;
+ 
+}
+.gauche{
+  padding:  0;
+}
+
+.image-container {
+  margin-right: 10px;
+}
+
+.text-container {
+  margin-left: 40px;
+}
+
+
+
+@media screen and (max-width: 900px) {
+
+  .droites{
+      display: none;
+  }
+
+  .gauche {
+     
+      width: 100%; 
+      margin-right: 0; 
+  }
+
+  .image-container {
+      margin-right: 0px;
+  }
+  
+  .text-container {
+      margin-left: 30px;
+  }
+
+  .dis{
+      margin-top: -20px;
+  }
+
+  .list{
+      width: 70%;
+  }
+
+  .lista{
+      width: 70%;
+  }
+
+  .dis h2{
+  padding-top: 10px;
+  padding-left: 10%;
+  }
+
+} 
+
+
+
+@media screen and (min-width: 901px) {
+  .gauche {
+     
+      width: 25%; 
+      padding-right: 0; 
+  }
 }
