@@ -1,36 +1,36 @@
-// Import des modules
-import bot_message from "./botmessage";
-import user_message from "./user.message";
-import user_navbar from "./user_navbar";
-import message_bar from "./message_bar";
-import acceuil from  './acceuil';
+import bot_message from './botmessage';
+import user_message from './user.message';
+import user_navbar from './user_navbar';
+import message_bar from './message_bar';
+import acceuil from './acceuil';
 
 let content;
 
-let isClicked = localStorage.getItem('isClicked');
+const isClicked = localStorage.getItem('isClicked') === 'true';
 
-
-if (isClicked == 'true') {
-    content = `
+if (isClicked) {
+  content = `
     <!-- Barre haut -->
     ${user_navbar()}
     <!-- Fin barre haut -->
 
     <!-- Contenu des messages utilisateur et bot -->
     <div class="message-container">
-        ${bot_message()} <!-- Affichage du message du bot -->
-        ${user_message()} <!-- Affichage du message de l'utilisateur -->
+      ${bot_message()} <!-- Affichage du message du bot -->
+      ${user_message()} <!-- Affichage du message de l'utilisateur -->
+    </div>
     <!-- Fin des messages utilisateur et bot -->
 
     <!-- Barre de messages -->
     ${message_bar()}
     <!-- Fin de la barre de messages -->
-    `;
+  `;
 } else {
-    content = `
+  content = `
     <div class="message-container">
-        ${acceuil()}
-    `;
+      ${acceuil()}
+    </div>
+  `;
 }
 
-export default () => (content);
+export default () => content;

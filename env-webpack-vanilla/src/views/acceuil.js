@@ -6,5 +6,4 @@ export default () => (`
 <div class="texte">
 <p>- Cliquez sur une conversation pour commencer -</p>
 </div>
-
-`)
+`);
