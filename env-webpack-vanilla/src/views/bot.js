@@ -1,4 +1,9 @@
-export default ({ id, img, nom, mssg }) => (`
+export default ({
+  id,
+  img,
+  nom,
+  mssg
+}) => (`
 <div class="row">
   <div id='${id}' class="list container" onclick="BotenCours('${id}')"> 
     <div class="row align-items-center">
