@@ -88,7 +88,7 @@ export default () => (`
 <div class="container mt-3 ">
 <div class="input-group mb-3">
    <input id="message-input" type="text" class="form-control" placeholder="Type your message..." aria-label="Message" aria-describedby="send-button">
-   <button id="send-button" class="btn btn-outline-secondary" type="button">
+   <button id="send-button" class="btn btn-outline-primary" type="button">
        <i class="fas fa-paper-plane"></i> 
    </button>
 </div>

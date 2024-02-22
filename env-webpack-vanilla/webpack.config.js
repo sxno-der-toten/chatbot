@@ -4,8 +4,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
-    main: './src/main.js'
+    index: './src/index.js'
   },
   output: {
     filename: 'src/[name].[fullhash].js',
