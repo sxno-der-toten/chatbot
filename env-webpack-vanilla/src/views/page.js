@@ -1,7 +1,7 @@
 import viewBotUserContainer from './bot_user_container';
 import viewMessageContainer from './message_container';
 
-export default (view) => (`
+export default () => (`
 <div class="row col-12">
 <div class="gauche col-3 ">
 ${viewBotUserContainer()}

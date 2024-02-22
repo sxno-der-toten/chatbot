@@ -63,5 +63,21 @@ module.exports = {
       exclude: 'node_modules',
       files: './src/'
     })
-  ]
+  ],
+    module: {
+      rules: [
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'assets/images', // specify the output directory for images
+              },
+            },
+          ],
+        },
+      ],
+    },
 };

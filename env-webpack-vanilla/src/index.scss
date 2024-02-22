@@ -5,7 +5,9 @@ body  {
   margin: 0;
   padding: 0;
 
-
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 
@@ -22,6 +24,21 @@ body  {
   
 } 
 
+.lgo{
+  display: flex;
+
+}
+.lgo img{
+
+  margin-right: 10px;
+}
+
+.lgo h1{
+
+  font-weight: 30px;
+
+  margin-top: 33px;
+}
 .user{
 height: 100px;
   border-bottom: 2px solid #f6f7f9;
@@ -45,6 +62,14 @@ height: 100px;
  
   margin-right: 10px;
 
+}
+
+.dis{
+  margin-top: -20px;
+}
+
+#rech{
+  width: 90%;
 }
 .droites{
   height: 100vh;
@@ -88,9 +113,9 @@ div {
 }
 
 .logo{
- width: 50px;
+ width: 100px;
  margin-left: 30px;
- margin-top: 15px;
+
 } 
 
 .btn btn-outline-secondary {
@@ -110,6 +135,11 @@ div {
   border-radius: 10px 10px 10px 0px;
 
 
+}
+
+.dis h2{
+margin-left: 10% ;
+margin-top: 40px;
 }
 p{
   margin-bottom: 0;
@@ -214,7 +244,9 @@ h2 ,h3 ,h5 ,p {
   padding-top: 10px;
   padding-left: 10%;
   }
-
+  .lgo h1{
+    font-weight: 28px;
+  }
 } 
 
 
