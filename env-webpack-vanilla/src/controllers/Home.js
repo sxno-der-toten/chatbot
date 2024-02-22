@@ -1,23 +1,22 @@
 import viewPage from '../views/page';
 
 const Home = class {
-  constructor(params) {
+  constructor(params, pageView) {
     this.el = document.querySelector('#root');
     this.params = params;
+    this.pageView = pageView;
 
     this.run();
   }
 
   render() {
-    return `
-      ${viewPage(`
-        <h1>Hello Home</h1>
-      `)}
-    `;
+    return viewPage(`
+    `);
   }
 
   run() {
-    this.el.innerHTML = this.render();
+    const content = this.render();
+    this.el.innerHTML = content;
   }
 };
 

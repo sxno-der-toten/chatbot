@@ -1,10 +1,15 @@
-import viewNav from './nav';
+import viewBotUserContainer from './bot_user_container';
+import viewMessageContainer from './message_container';
 
 export default (view) => (`
-  <div class="container">
-    <div class="row">
-      <div class="col-12">${viewNav()}</div>
-    </div>
-    ${view}
-  </div>
+<div class="row col-12">
+<div class="gauche col-3 ">
+${viewBotUserContainer()}
+</div>
+<div class="droites col-9 ">
+${viewMessageContainer()}
+</div>
+
+${view}
+</div>
 `);
