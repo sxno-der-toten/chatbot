@@ -3,9 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-  entry: {
-    index: './src/index.js'
-  },
+  entry: './src/index.js', //if you unuse typescript entry
+  //entry: './src/index.ts',
   output: {
     filename: 'src/[name].[fullhash].js',
     path: path.resolve(__dirname, 'dist')
@@ -29,6 +28,14 @@ module.exports = {
           "style-loader",
           "css-loader",
           "sass-loader",
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|ico|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
         ],
       },
       { test: /\.ts$/, use: 'ts-loader' }
@@ -62,21 +69,5 @@ module.exports = {
       exclude: 'node_modules',
       files: './src/'
     })
-  ],
-    module: {
-      rules: [
-        {
-          test: /\.(png|jpe?g|gif)$/i,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[ext]',
-                outputPath: 'assets/images', // specify the output directory for images
-              },
-            },
-          ],
-        },
-      ],
-    },
+  ]
 };
