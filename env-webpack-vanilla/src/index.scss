@@ -213,9 +213,11 @@ p {
 
 .texte {
   display: flex;
- justify-content: center ;
+  position: absolute;
   top: 90%;
+  left: 60%;
   
+  transform: translate(-50%, -50%);
 }
 
 @media screen and (max-width: 900px) {
