@@ -6,7 +6,7 @@ import acceuil from './acceuil';
 
 let content;
 
-const isClicked = localStorage.getItem('isClicked') === 'true';
+const isClicked = true;
 
 if (isClicked) {
   content = `
@@ -18,7 +18,7 @@ if (isClicked) {
     <div class="message-container">
       ${bot_message()} <!-- Affichage du message du bot -->
       ${user_message()} <!-- Affichage du message de l'utilisateur -->
-    </div>
+    
     <!-- Fin des messages utilisateur et bot -->
 
     <!-- Barre de messages -->

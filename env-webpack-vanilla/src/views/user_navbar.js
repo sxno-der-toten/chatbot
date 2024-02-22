@@ -1,32 +1,12 @@
-// 'isClicked' is declared but not used in this file, so we'll remove it
-// let isClicked = false;
-
-function BotenCours(id) {
-  // Since 'isClicked' is no longer used, we don't need to set it here
-  // isClicked = true;
-  const element = document.getElementById(id);
-  if (element) {
-    const imageUrl = element.querySelector('img').getAttribute('src');
-    const name = element.querySelector('h5').innerText;
-    return { imageUrl, name };
-  }
-}
-
-export default (id) => {
-  const user = BotenCours(id);
-  if (!user) return '';
-  // Since 'isClicked' is no longer used, we'll remove the assignment to it
-  // localStorage.setItem('isClicked', true);
-  return `
+export default () => ( `
     <div class="col-12">
       <div class="user row align-items-center">
         <div class="col-md-1">
-          <img src="${user.imageUrl}" alt="" class="rounded-circle" style="width: 70px; height: 70px;">
+          <img src="https://img.freepik.com/free-photo/portrait-young-businessman-with-mustache-glasses-3d-rendering_1142-51509.jpg?t=st=1708592714~exp=1708596314~hmac=1a841d989467e4d72792e0f9db33ed4b5e1c8e8e28bec45d0f32a1be56ee9537&w=996" alt="" class="rounded-circle" style="width: 70px; height: 70px;">
         </div>
         <div class="col-md-8">
-          <h5>${user.name}</h5>
+          <h5>David</h5>
         </div>
       </div>
     </div>
-  `;
-};
+  `);
