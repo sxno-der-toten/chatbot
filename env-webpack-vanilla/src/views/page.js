@@ -10,6 +10,5 @@ ${viewBotUserContainer()}
 ${viewMessageContainer()}
 </div>
 
-${view}
 </div>
 `);
