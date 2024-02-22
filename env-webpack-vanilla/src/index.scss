@@ -1,98 +1,79 @@
 @charset "utf-8";
 
-body  {
+body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-
-.gauche{
+.gauche {
   border-right: 1px solid #f6f7f9;
   height: 100vh;
   padding-left: 0;
   padding-right: 0;
   margin-left: 0;
   margin-right: 0;
-  
- 
-
-  
-} 
-
-.lgo{
-  display: flex;
-
 }
-.lgo img{
 
+.lgo {
+  display: flex;
+}
+
+.lgo img {
   margin-right: 10px;
 }
 
-.lgo h1{
-
+.lgo h1 {
   font-weight: 30px;
-
   margin-top: 33px;
 }
-.user{
-height: 100px;
+
+.user {
+  height: 100px;
   border-bottom: 2px solid #f6f7f9;
   backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-     
-      padding-left: 0;
-      padding-right: 0;
-      margin-left: 0;
-      margin-right: 0;
-
-} 
-
-.mssga{
-  display: flex;
-  align-items: flex-end;
-  
-} 
-
-.mssga img{
- 
-  margin-right: 10px;
-
+  -webkit-backdrop-filter: blur(24px);
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
-.dis{
+.mssga {
+  display: flex;
+  align-items: flex-end;
+}
+
+.mssga img {
+  margin-right: 10px;
+}
+
+.dis {
   margin-top: -20px;
 }
 
-#rech{
+#rech {
   width: 90%;
 }
-.droites{
+
+.droites {
   height: 100vh;
   padding-left: 0;
   padding-right: 0;
   margin-left: 0;
   margin-right: 0;
-
 }
 
-
 .message-container {
-
-  
-  overflow-y: auto; /* Activez le défilement vertical */
+  overflow-y: auto;
   height: 76vh;
- /* background-image: url('Design sans titre-63.png'); /* Chemin vers votre image */
-  background-size: cover; /* Ajuste la taille de l'image pour couvrir l'ensemble de l'élément */
   background-repeat: no-repeat;
-  padding:10px;
+  padding: 10px;
   background-color: #f6f7f9;
-  
-} 
+}
 
 .bot-container {
   overflow-y: auto;
@@ -100,102 +81,94 @@ height: 100px;
   overflow-x: hidden;
 }
 
-.mssg{
+.mssg {
   border-top: 2px solid #d9d9d9;
   height: 70px;
   padding: 0;
   margin: 0;
-} 
+}
 
 div {
   margin: 0px;
   padding: 0px;
 }
 
-.logo{
- width: 100px;
- margin-left: 30px;
-
-} 
+.logo {
+  width: 100px;
+  margin-left: 30px;
+}
 
 .btn btn-outline-secondary {
-  color: #fff; /* Couleur du texte */
-  background-color: #007bff; /* Couleur de fond bleue */
-  border-color: #007bff; /* Couleur de la bordure */
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 .btn btn-outline-secondary:hover {
-  color: #fff; /* Couleur du texte au survol */
-  background-color: #28a745; /* Couleur de fond verte au survol */
-  border-color: #28a745; /* Couleur de la bordure au survol */
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
 }
 
 .card {
   margin-right: 15px;
   border-radius: 10px 10px 10px 0px;
-
-
 }
 
-.dis h2{
-margin-left: 10% ;
-margin-top: 40px;
+.dis h2 {
+  margin-left: 10%;
+  margin-top: 40px;
 }
-p{
+
+p {
   margin-bottom: 0;
   margin-top: 0;
 }
-.row{
+
+.row {
   margin-left: 0;
   padding-left: 0;
-}  
+}
 
-.you{
-  color:black;
-  
-} 
+.you {
+  color: black;
+}
 
 body {
-/* Fond blanc */
   background-color: #ffffff;
 }
 
 .card {
-  background-color:white; 
+  background-color: white;
 }
 
-#aa{
- background-color:  #edf1fd;
- border-radius: 10px 10px 0 10px;
-}
-h2 ,h3 ,h5 ,p {
-  color: #112D4E;
-}
-/* Styles pour les différents éléments texte */
-
-
-
-
-
-
-.lista h5{
-  color:white;
+#aa {
+  background-color: #edf1fd;
+  border-radius: 10px 10px 0 10px;
 }
 
-.lista p{
-  color:white;
+h2,
+h3,
+h5,
+p {
+  color: #112d4e;
 }
 
-.list{
+.lista h5,
+.lista p {
+  color: white;
+}
+
+.list {
   width: 85%;
- border-radius: 8px;
- margin-bottom: 10px;
- padding: 5px;
- padding-bottom: 10px;
- 
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 5px;
+  padding-bottom: 10px;
 }
-.gauche{
-  padding:  0;
+
+.gauche {
+  padding: 0;
 }
 
 .image-container {
@@ -206,55 +179,49 @@ h2 ,h3 ,h5 ,p {
   margin-left: 40px;
 }
 
-
-
 @media screen and (max-width: 900px) {
-
-  .droites{
-      display: none;
+  .droites {
+    display: none;
   }
 
   .gauche {
-     
-      width: 100%; 
-      margin-right: 0; 
+    width: 100%;
+    margin-right: 0;
   }
 
   .image-container {
-      margin-right: 0px;
+    margin-right: 0px;
   }
-  
+
   .text-container {
-      margin-left: 30px;
+    margin-left: 30px;
   }
 
-  .dis{
-      margin-top: -20px;
+  .dis {
+    margin-top: -20px;
   }
 
-  .list{
-      width: 70%;
+  .list {
+    width: 70%;
   }
 
-  .lista{
-      width: 70%;
+  .lista {
+    width: 70%;
   }
 
-  .dis h2{
-  padding-top: 10px;
-  padding-left: 10%;
+  .dis h2 {
+    padding-top: 10px;
+    padding-left: 10%;
   }
-  .lgo h1{
+
+  .lgo h1 {
     font-weight: 28px;
   }
-} 
-
-
+}
 
 @media screen and (min-width: 901px) {
   .gauche {
-     
-      width: 25%; 
-      padding-right: 0; 
+    width: 25%;
+    padding-right: 0;
   }
 }
