@@ -1,6 +1,6 @@
 import viewPage from '../views/page';
 
-const Home = class {
+const chatbot = class {
   constructor(params, pageView) {
     this.el = document.querySelector('#root');
     this.params = params;
@@ -20,4 +20,4 @@ const Home = class {
   }
 };
 
-export default Home;
+export default chatbot;

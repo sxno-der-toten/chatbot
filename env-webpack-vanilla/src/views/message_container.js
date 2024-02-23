@@ -6,7 +6,7 @@ import acceuil from './acceuil';
 
 let content;
 
-const isClicked = true;
+const isClicked = false;
 
 if (isClicked) {
   content = `

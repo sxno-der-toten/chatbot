@@ -1,11 +1,6 @@
-export default ({
-  id,
-  img,
-  nom,
-  mssg
-}) => (`
+export default ({ id, img, nom, mssg }) => (`
 <div class="row">
-  <div id='${id}' class="list container" onclick="BotenCours('${id}')"> 
+  <div id='${id}' class="list container" onclick="afficher('${id}')"> 
     <div class="row align-items-center">
       <div class="col-2  image-container">
         <img src="${img}" alt="" class="m-3 rounded-circle" style="width: 70px; height: 70px;">

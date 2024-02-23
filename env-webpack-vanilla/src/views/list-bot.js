@@ -1,6 +1,6 @@
 import bot from './bot';
 
-const bots = [
+export const bots = [
   {
     id: 1,
     img: 'https://img.freepik.com/free-photo/portrait-young-businessman-with-mustache-glasses-3d-rendering_1142-51509.jpg?t=st=1708592714~exp=1708596314~hmac=1a841d989467e4d72792e0f9db33ed4b5e1c8e8e28bec45d0f32a1be56ee9537&w=996',
@@ -20,6 +20,20 @@ const bots = [
     mssg: 'I am here'
   }
 ];
+
+export function afficher(id) {
+  let nomBot = '';
+  let urlBot = '';
+
+  for (let i = 0; i < bots.length; i++) {
+    if (bots[i].id === id) {
+      nomBot = bots[i].nom;
+      urlBot = bots[i].img;
+      break;
+    }
+  }
+  return { nomBot, urlBot };
+}
 
 export default () => (
   `<div class="bot-container mt-3">
