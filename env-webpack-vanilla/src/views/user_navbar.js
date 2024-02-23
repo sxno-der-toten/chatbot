@@ -1,4 +1,4 @@
-export default () => ( `
+export default () => (`
     <div class="col-12">
       <div class="user row align-items-center">
         <div class="col-md-1">
@@ -9,4 +9,4 @@ export default () => ( `
         </div>
       </div>
     </div>
-  `);
+`);
