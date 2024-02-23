@@ -20,21 +20,6 @@ export const bots = [
     mssg: 'I am here'
   }
 ];
-
-export function afficher(id) {
-  let nomBot = '';
-  let urlBot = '';
-
-  for (let i = 0; i < bots.length; i++) {
-    if (bots[i].id === id) {
-      nomBot = bots[i].nom;
-      urlBot = bots[i].img;
-      break;
-    }
-  }
-  return { nomBot, urlBot };
-}
-
 export default () => (
   `<div class="bot-container mt-3">
     ${bots.map((botData) => bot(botData)).join('')}
