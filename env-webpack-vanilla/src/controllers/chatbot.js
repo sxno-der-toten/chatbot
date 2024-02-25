@@ -37,15 +37,22 @@ class Chatbot {
   handleEnterKeyPress(event) {
     if (event.key === 'Enter') {
       const message = document.getElementById('message-input').value;
-      this.render(message);
+      this.renderUserMessage(message);
     }
   }
 
-  render(userMessage) {
+  renderUserMessage(message) {
+    const messageContainer = document.querySelector('.message-container');
+    const userMessageElement = user_message(message);
+    messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
+
+    document.getElementById('message-input').value = '';
+  }
+
+  render() {
     let content = '';
     let usernav = '';
     let botmssg = '';
-    let usermssg = '';
     let messgbar = '';
 
     if (!this.isClicked) {
@@ -53,25 +60,24 @@ class Chatbot {
     } else {
       usernav = userNavbar(this.botUrl, this.botName);
       botmssg = bot_message(this.botUrl);
-      usermssg = user_message(userMessage);
       messgbar = message_bar();
     }
 
     const html = `
-        <div id="page" class="row col-12">
-            <div class="gauche col-3 ">
-                ${viewBotUserContainer()}
-            </div>
-            <div class="droites col-9 ">
-                ${content}
-                ${usernav}
-                <div class="message-container">
-                    ${botmssg} 
-                    ${usermssg} 
-                </div>
-                ${messgbar}
-            </div>
+    <div id="page" class="row col-12">
+        <div class="gauche col-3 ">
+            ${viewBotUserContainer()}
         </div>
+        <div class="droites col-9 ">
+            ${content}
+            ${usernav}
+            <div class="message-container">
+                ${botmssg} 
+                <!-- Les messages utilisateur seront ajoutés ici -->
+            </div>
+            ${messgbar}
+        </div>
+    </div>
     `;
 
     this.el.innerHTML = html;
