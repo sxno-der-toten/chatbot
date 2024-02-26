@@ -5,6 +5,7 @@ import acceuil from '../views/acceuil';
 import bot_message from '../views/botmessage';
 import user_message from '../views/user.message';
 import message_bar from '../views/message_bar';
+import help_message from '../views/help_message';
 
 class Chatbot {
   constructor(params) {
@@ -13,6 +14,7 @@ class Chatbot {
     this.isClicked = false;
     this.botUrl = '';
     this.botName = '';
+    this.itemId = '';
 
     this.run();
   }
@@ -22,7 +24,7 @@ class Chatbot {
     const hours = date.getHours();
     let minutes = date.getMinutes();
     if (minutes < 10) {
-      minutes = `0 ${minutes}`;
+      minutes = `0${minutes}`;
     }
     const heure = `${hours}:${minutes}`;
     return heure;
@@ -33,8 +35,8 @@ class Chatbot {
     const closestListbot = event.target.closest('.listbot');
 
     if (clickedList && closestListbot) {
-      const itemId = clickedList.id;
-      const foundBot = bots.find((bot) => bot.id.toString() === itemId);
+      this.itemId = clickedList.id;
+      const foundBot = bots.find((bot) => bot.id.toString() === this.itemId );
 
       if (foundBot) {
         this.botUrl = foundBot.img;
@@ -51,10 +53,20 @@ class Chatbot {
       if (message !== '') {
         const heure = this.getCurrentTime();
         this.renderUserMessage(message, heure);
+        this.helpCommandeShow(message, heure, this.itemId);
       } else {
-        // message pas envoyer car vide
-
+        // message pas envoyé car vide
       }
+    }
+  }
+
+  helpCommandeShow(message, heure, itemId) {
+    if (message === 'help') {
+      const helpnum = itemId;
+      console.log(helpnum);
+      const messageContainer = document.querySelector('.message-container');
+      const userMessageElement = help_message(this.botUrl, heure, helpnum);
+      messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
     }
   }
 
