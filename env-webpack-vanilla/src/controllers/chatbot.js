@@ -17,6 +17,17 @@ class Chatbot {
     this.run();
   }
 
+  getCurrentTime() {
+    const date = new Date();
+    const hours = date.getHours();
+    let minutes = date.getMinutes();
+    if (minutes < 10) {
+      minutes = `0 ${minutes}`;
+    }
+    const heure = `${hours}:${minutes}`;
+    return heure;
+  }
+
   handleItemClick = (event) => {
     const clickedList = event.target.closest('.list');
     const closestListbot = event.target.closest('.listbot');
@@ -36,14 +47,20 @@ class Chatbot {
 
   handleEnterKeyPress(event) {
     if (event.key === 'Enter') {
-      const message = document.getElementById('message-input').value;
-      this.renderUserMessage(message);
+      const message = document.getElementById('message-input').value.trim();
+      if (message !== '') {
+        const heure = this.getCurrentTime();
+        this.renderUserMessage(message, heure);
+      } else {
+        // message pas envoyer car vide
+
+      }
     }
   }
 
-  renderUserMessage(message) {
+  renderUserMessage(message, heure) {
     const messageContainer = document.querySelector('.message-container');
-    const userMessageElement = user_message(message);
+    const userMessageElement = user_message(message, heure);
     messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
 
     document.getElementById('message-input').value = '';
@@ -54,12 +71,13 @@ class Chatbot {
     let usernav = '';
     let botmssg = '';
     let messgbar = '';
+    const heure = this.getCurrentTime();
 
     if (!this.isClicked) {
       content = acceuil();
     } else {
       usernav = userNavbar(this.botUrl, this.botName);
-      botmssg = bot_message(this.botUrl);
+      botmssg = bot_message(this.botUrl, heure);
       messgbar = message_bar();
     }
 
@@ -84,6 +102,15 @@ class Chatbot {
 
     if (this.isClicked) {
       document.getElementById('message-input').addEventListener('keyup', this.handleEnterKeyPress.bind(this));
+    }
+
+    if (this.isClicked && window.innerWidth < 900) {
+      const droites = document.querySelector('.droites');
+      const gauches = document.querySelector('.gauche');
+
+      droites.style.display = 'block';
+      gauches.style.display = 'none';
+      droites.style.width = '100%';
     }
   }
 

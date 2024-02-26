@@ -1,4 +1,4 @@
-export default (image) => (`
+export default (image, heure) => (`
 <div class="col-5 m-3">
     <div class="mssga">
         <div class="mb-1 d-flex">
@@ -12,7 +12,7 @@ export default (image) => (`
                     </p>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <div class="mt-2"><p>9:41</p></div>
+                    <div class="mt-2"><p>${heure}</p></div>
                 </div>
             </div>
         </div>
