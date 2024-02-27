@@ -1,44 +1,44 @@
 export const HELP_1 = [
   {
     message: 'meteo',
-    response: 'sunny'
+    response: '☀️ sunny'
   },
   {
     message: 'date',
-    response: '26/02/2024'
+    response: '📅 26/02/2024'
   },
   {
     message: 'hours',
-    response: '18h00'
+    response: '⏰ 18h00'
   }
 ];
 
 export const HELP_2 = [
   {
     message: 'meteo',
-    response: 'rainy'
+    response: '🌧️ rainy'
   },
   {
     message: 'date',
-    response: '27/02/2024'
+    response: '📅 27/02/2024'
   },
   {
     message: 'hours',
-    response: '19h00'
+    response: '⏰ 19h00'
   }
 ];
 
 export const HELP_3 = [
   {
     message: 'meteo',
-    response: 'snowy'
+    response: '❄️ snowy'
   },
   {
     message: 'date',
-    response: '28/02/2024'
+    response: '📅 28/02/2024'
   },
   {
     message: 'hours',
-    response: '20h00'
+    response: '⏰ 20h00'
   }
 ];
