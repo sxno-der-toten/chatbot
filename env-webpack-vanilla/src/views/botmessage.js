@@ -1,4 +1,4 @@
-export default (image, heure) => (`
+export default (image, message, heure) => (`
 <div class="col-5 m-3">
     <div class="mssga">
         <div class="mb-1 d-flex">
@@ -8,7 +8,7 @@ export default (image, heure) => (`
             <div class="card-body">
                 <div>
                     <p class="blockquote">
-                        <p>A well-known quote, contained in a blockquote element.</p>
+                        <p>${message}</p>
                     </p>
                 </div>
                 <div class="d-flex justify-content-end">

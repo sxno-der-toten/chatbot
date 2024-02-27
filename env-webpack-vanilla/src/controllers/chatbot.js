@@ -6,6 +6,7 @@ import bot_message from '../views/botmessage';
 import user_message from '../views/user.message';
 import message_bar from '../views/message_bar';
 import help_message from '../views/help_message';
+import { HELP_1, HELP_2, HELP_3 } from '../views/help';
 
 class Chatbot {
   constructor(params) {
@@ -36,7 +37,7 @@ class Chatbot {
 
     if (clickedList && closestListbot) {
       this.itemId = clickedList.id;
-      const foundBot = bots.find((bot) => bot.id.toString() === this.itemId );
+      const foundBot = bots.find((bot) => bot.id.toString() === this.itemId);
 
       if (foundBot) {
         this.botUrl = foundBot.img;
@@ -54,19 +55,65 @@ class Chatbot {
         const heure = this.getCurrentTime();
         this.renderUserMessage(message, heure);
         this.helpCommandeShow(message, heure, this.itemId);
+        this.actionResponse(message, heure, this.itemId);
       } else {
         // message pas envoyé car vide
       }
     }
   }
 
+  botPresentationMessage() {
+    const message = `🤖 Bonjour ! Je suis ${this.botName}, votre assistant virtuel dédié à rendre votre expérience plus agréable et plus efficace.<br> 💬 N'hésitez pas à m'envoyer vos questions et requêtes, et je ferai de mon mieux pour vous offrir les réponses les plus utiles et pertinentes.<br>🛠️ Pour voir les actions spécifiques, veuillez écrire : 'help'.`;
+    const heure = this.getCurrentTime();
+
+    return bot_message(this.botUrl, message, heure);
+  }
+
   helpCommandeShow(message, heure, itemId) {
     if (message === 'help') {
       const helpnum = itemId;
-      console.log(helpnum);
       const messageContainer = document.querySelector('.message-container');
       const userMessageElement = help_message(this.botUrl, heure, helpnum);
       messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
+    }
+  }
+
+  actionResponse(message, heure, itemId) {
+    const num = itemId;
+    const helpNum = `HELP_${num.toString()}`;
+
+    let helpArray;
+    switch (helpNum) {
+      case 'HELP_1':
+        helpArray = HELP_1;
+        break;
+      case 'HELP_2':
+        helpArray = HELP_2;
+        break;
+      case 'HELP_3':
+        helpArray = HELP_3;
+        break;
+      default:
+        // Rien à afficher
+        break;
+    }
+
+    if (helpArray) {
+      let messageFound = '';
+      for (let i = 0; i < helpArray.length; i += 1) {
+        if (message === helpArray[i].message) {
+          messageFound = helpArray[i].response;
+
+          const messageContainer = document.querySelector('.message-container');
+          const userMessageElement = bot_message(this.botUrl, messageFound, heure);
+          messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
+          break;
+        }
+      }
+
+      if (!messageFound) {
+        // Gérer le cas où aucun message correspondant n'est trouvé
+      }
     }
   }
 
@@ -74,22 +121,20 @@ class Chatbot {
     const messageContainer = document.querySelector('.message-container');
     const userMessageElement = user_message(message, heure);
     messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
-
     document.getElementById('message-input').value = '';
   }
 
   render() {
     let content = '';
     let usernav = '';
-    let botmssg = '';
     let messgbar = '';
-    const heure = this.getCurrentTime();
+    let botmssg = '';
 
     if (!this.isClicked) {
       content = acceuil();
     } else {
       usernav = userNavbar(this.botUrl, this.botName);
-      botmssg = bot_message(this.botUrl, heure);
+      botmssg = this.botPresentationMessage();
       messgbar = message_bar();
     }
 
@@ -102,8 +147,8 @@ class Chatbot {
             ${content}
             ${usernav}
             <div class="message-container">
-                ${botmssg} 
-                <!-- Les messages utilisateur seront ajoutés ici -->
+                
+                <!-- Les messages utilisateur et du bot  seront ajoutés ici -->
             </div>
             ${messgbar}
         </div>
@@ -114,6 +159,11 @@ class Chatbot {
 
     if (this.isClicked) {
       document.getElementById('message-input').addEventListener('keyup', this.handleEnterKeyPress.bind(this));
+      setTimeout(() => {
+        botmssg = this.botPresentationMessage();
+        const messageContainer = document.querySelector('.message-container');
+        messageContainer.innerHTML = botmssg;
+      }, 1000);
     }
 
     if (this.isClicked && window.innerWidth < 900) {
