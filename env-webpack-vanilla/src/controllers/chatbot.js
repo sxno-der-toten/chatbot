@@ -7,6 +7,7 @@ import user_message from '../views/user.message';
 import message_bar from '../views/message_bar';
 import help_message from '../views/help_message';
 import { HELP_1, HELP_2, HELP_3 } from '../views/help';
+import loader from '../views/loaderMessage';
 
 class Chatbot {
   constructor(params) {
@@ -73,8 +74,16 @@ class Chatbot {
     if (message === 'help') {
       const helpnum = itemId;
       const messageContainer = document.querySelector('.message-container');
-      const userMessageElement = help_message(this.botUrl, heure, helpnum);
-      messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
+      const loaderElement = loader();
+      messageContainer.insertAdjacentHTML('beforeend', loaderElement);
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+
+      setTimeout(() => {
+        const userMessageElement = help_message(this.botUrl, heure, helpnum);
+        messageContainer.removeChild(messageContainer.lastElementChild);
+        messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+      }, 2000);
     }
   }
 
@@ -105,8 +114,16 @@ class Chatbot {
           messageFound = helpArray[i].response;
 
           const messageContainer = document.querySelector('.message-container');
-          const userMessageElement = bot_message(this.botUrl, messageFound, heure);
-          messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
+          const loaderElement = loader();
+          messageContainer.insertAdjacentHTML('beforeend', loaderElement);
+          messageContainer.scrollTop = messageContainer.scrollHeight;
+          setTimeout(() => {
+            const botMessageElement = bot_message(this.botUrl, messageFound, heure);
+            messageContainer.removeChild(messageContainer.lastElementChild);
+            messageContainer.insertAdjacentHTML('beforeend', botMessageElement);
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+          }, 2000);
+
           break;
         }
       }
@@ -121,6 +138,7 @@ class Chatbot {
     const messageContainer = document.querySelector('.message-container');
     const userMessageElement = user_message(message, heure);
     messageContainer.insertAdjacentHTML('beforeend', userMessageElement);
+    messageContainer.scrollTop = messageContainer.scrollHeight;
     document.getElementById('message-input').value = '';
   }
 
@@ -159,11 +177,17 @@ class Chatbot {
 
     if (this.isClicked) {
       document.getElementById('message-input').addEventListener('keyup', this.handleEnterKeyPress.bind(this));
+      const messageContainer = document.querySelector('.message-container');
+      const loaderElement = loader();
+      messageContainer.insertAdjacentHTML('beforeend', loaderElement);
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+
       setTimeout(() => {
         botmssg = this.botPresentationMessage();
-        const messageContainer = document.querySelector('.message-container');
-        messageContainer.innerHTML = botmssg;
-      }, 1000);
+        messageContainer.removeChild(messageContainer.lastElementChild);
+        messageContainer.insertAdjacentHTML('beforeend', botmssg);
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+      }, 2000);
     }
 
     if (this.isClicked && window.innerWidth < 900) {

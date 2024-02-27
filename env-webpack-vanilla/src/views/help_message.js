@@ -1,6 +1,4 @@
-import { HELP_1 } from './help';
-import { HELP_2 } from './help';
-import { HELP_3 } from './help';
+import { HELP_1, HELP_2, HELP_3 } from '../views/help';
 
 export default (image, heure, help_num) => {
   let helpArray;
@@ -27,9 +25,9 @@ export default (image, heure, help_num) => {
                       <div class="card-header">
                           Help commande
                       </div>
-                      <ul class="list-group list-group-flush">
+                      <div class="list-group list-group-flush">
                           ${helpArray.map(item => `<li class="list-group-item">${item.message}</li>`).join('')}
-                      </ul>
+                      </div>
                   </div>
                   <div class="d-flex justify-content-end">
                       <div class="mt-2"><p>${heure}</p></div>
