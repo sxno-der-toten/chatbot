@@ -1,0 +1,15 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "App\\Controllers\\": "src/controllers/"
+        }
+    },
+    "authors": [
+        {
+            "name": "xzen769",
+            "email": "xzen769@gmail.com"
+        }
+    ],
+    "require": {}
+}
