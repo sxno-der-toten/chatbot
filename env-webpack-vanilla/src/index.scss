@@ -55,9 +55,7 @@ body {
   margin-top: -20px;
 }
 
-#rech {
-  width: 90%;
-}
+
 
 .droites {
   height: 100vh;
@@ -69,8 +67,9 @@ body {
 
 .message-container {
   overflow-y: auto;
-  height: 76vh;
+  height: 76%;
   padding: 10px;
+  z-index: 1;
   
 
   background-image: url('https://static.vecteezy.com/system/resources/previews/007/144/718/large_2x/abstract-blue-pink-powder-explosion-on-white-background-free-photo.JPG');
@@ -123,6 +122,10 @@ div {
 .dis h2 {
   margin-left: 10%;
   margin-top: 40px;
+}
+
+#rech {
+  margin-left: 8%;
 }
 
 p {
@@ -181,7 +184,7 @@ p {
 }
 
 .text-container {
-  margin-left: 40px;
+  margin-top: 10px;
 }
 
 
@@ -264,6 +267,20 @@ p {
     transform: translateY(10px);
   }
 }
+#user_navbar h5{
+  margin-left: 15px;
+  margin-top: 20px;
+
+}
+
+
+#user_navbar{
+
+  z-index: 999;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+}
 
 @media screen and (max-width: 900px) {
   .droites {
@@ -280,16 +297,25 @@ p {
   }
 
   .text-container {
-    margin-left: 30px;
+    margin-top: 10px;
+    margin-left: 20px;
   }
+  .text-container h5{
+    font-size: 20px;
 
+  }
+  .text-container p{
+    font-size: 18px;
+
+  }
   .dis {
     margin-top: -20px;
   }
 
   .list {
-    width: 70%;
+    width: 90%;
   }
+
 
   .lista {
     width: 70%;
@@ -297,11 +323,34 @@ p {
 
   .dis h2 {
     padding-top: 10px;
-    padding-left: 10%;
+    padding-bottom: 15px;
+    
+  }
+
+  #rech {
+    width: 85%;
   }
 
   .lgo h1 {
     font-weight: 28px;
+  }
+
+
+  #user_navbar {
+    margin-left: 20px;
+  }
+
+  #user_navbar i{
+    display: block;
+    font-size: 22px;
+    margin-top: 22px;
+    margin-right: 13px;
+  }
+
+  .logo{
+    margin-left: 7%;
+    width: 100px;
+    
   }
 }
 
@@ -310,4 +359,13 @@ p {
     width: 25%;
     padding-right: 0;
   }
+  #user_navbar i{
+    display: none;
+  }
+
+  #rech {
+    width: 85%;
+  }
+
 }
+
