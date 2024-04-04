@@ -1,17 +1,42 @@
-<?php 
+<?php
 
 namespace App\Controllers;
 
-class Delete {
-    public function delete($bdd) {
-        $query = "SELECT * FROM post_it WHERE id=:id";
-        $response = $bdd->prepare($query);
-        $response->execute(['id' => $_GET['id']]);
-        $data = $response->fetch();
+use PDO;
+use \PDOException;
 
-        $deleteQuery = "DELETE FROM post_it WHERE id=:id";
-        $deleteResponse = $bdd->prepare($deleteQuery);
-        // Execute the deletion query
-        $deleteResponse->execute(['id' => $_GET['id']]);
+class Delete {
+    private $db;
+
+    public function __construct($host, $port, $dbname, $user, $password) {
+        try {
+            $this->db = new PDO(
+                'mysql:host=' . $host . ';port=' . $port . ';dbname=' . $dbname,
+                $user,
+                $password
+            );
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->db->setAttribute(PDO::ATTR_PERSISTENT, false);
+        } catch (PDOException $e) {
+            echo 'Connexion échouée : ' . $e->getMessage();
+            exit();
+        }
+    }
+
+    public function fetchMessages() {
+
+        $query = "SELECT id, messages_id, heure, message_type, image FROM messages";
+        $response = $this->db->query($query);
+
+        $messages = $response->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($messages as $message) {
+            echo "ID: " . $message['id'] . "<br>";
+            echo "Message ID: " . $message['messages_id'] . "<br>";
+            echo "Heure: " . $message['heure'] . "<br>";
+            echo "Type de message: " . $message['message_type'] . "<br>";
+            echo "Image: " . $message['image'] . "<br>";
+            echo "<br>";
+        }
     }
 }

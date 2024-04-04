@@ -9,8 +9,8 @@ use App\Controllers\Bot;
 use App\Controllers\Delete;
 
 new Router([
-  'user/:id' => User::class,
-  'messages' => Messages::class,
-  'bot'=>Bot::class,
-  'delete'=>Delete::class
+    'user/:id' => User::class,
+    'messages' => Messages::class,
+    'bot' => Bot::class,
+    'delete' => Delete::class,
 ]);
