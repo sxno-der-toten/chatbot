@@ -5,7 +5,7 @@ export const HELP_1 = [
   },
   {
     message: 'date',
-    response: '📅 26/02/2024'
+    response:  '26/02/2024'
   },
   {
     message: 'hours',
@@ -20,7 +20,7 @@ export const HELP_2 = [
   },
   {
     message: 'date',
-    response: '📅 27/02/2024'
+    response: '27/02/2024'
   },
   {
     message: 'hours',
@@ -35,7 +35,7 @@ export const HELP_3 = [
   },
   {
     message: 'date',
-    response: '📅 28/02/2024'
+    response: '28/02/2024'
   },
   {
     message: 'hours',

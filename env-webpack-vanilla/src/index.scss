@@ -369,3 +369,41 @@ p {
 
 }
 
+
+.ytb-video {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 12px;
+  max-width: auto;
+}
+
+.ytb-video a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ytb-video img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.ytb-video img:hover {
+  transform: scale(1.05);
+}
+
+.ytb-video p {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.imgebot img {
+  width: 50px;
+ border-radius: 90px;
+}
