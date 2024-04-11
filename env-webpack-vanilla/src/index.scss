@@ -407,3 +407,64 @@ p {
   width: 50px;
  border-radius: 90px;
 }
+.joke {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  max-width: 500px; 
+}
+
+.joke p {
+  margin: 0 0 20px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.joke p:last-child {
+  margin-bottom: 0;
+}
+
+.joke p strong {
+  font-weight: bold;
+}
+
+.joke p em {
+  font-style: italic;
+  color: #888;
+}
+
+.joke p.joke-answer {
+  display: none; /* Masquer les réponses initialement */
+}
+
+.joke-toggle {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.joke-setup{
+  display: flex;
+  justify-content: space-between;
+}
+
+.joke i {
+  margin: 5px 0px 15px 15px;
+}
+.jokeimg img {
+  width: 50px;
+ border-radius: 90px;
+}
+
+.jokemessage {
+  display: flex;
+  gap: 10px;
+}
+
+.jokeheure {
+  display: flex;
+  justify-content: end;
+}
+

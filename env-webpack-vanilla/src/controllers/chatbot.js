@@ -92,6 +92,10 @@ class Chatbot {
           const query = message.slice(message.indexOf(':') + 1).trim();
           this.handleYtbQuery(query, heure); 
         } 
+        if (message.toLowerCase().startsWith('joke:') || message.toLowerCase().startsWith('joke :')) {
+          const query = message.slice(message.indexOf(':') + 1).trim();
+          this.handleJokeQuery(query);
+        } 
       } else {
         // message pas envoyé car vide
       }
@@ -223,8 +227,6 @@ async handleWikiQuery(query, heure) {
   }
 }
 
-
-
 async handleYtbQuery(query, heure) {
   try {
     const musicVideos = await getYtbVideos(query); // Correction ici
@@ -241,24 +243,93 @@ async handleYtbQuery(query, heure) {
 
 async renderYtbVideos(ytbVideos) {
   const messageContainer = document.querySelector('.message-container');
-  const videosHTML = ytbVideos.map(video => {
-    return `
-    <div class='imgebot'>
-    <img src="${this.botUrl}" alt="">
-    </div>
-      <div class="ytb-video">
-        <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_blank">
-          <img src="${video.snippet.thumbnails.default.url}" alt="${video.snippet.title}">
-          <p>${video.snippet.title}</p>
-        </a>
-      </div>
+  ytbVideos.forEach(item => {
+    const videoTitle = item.snippet.title;
+    const videoId = item.id.videoId;
+    const videoThumbnailUrl = item.snippet.thumbnails.default.url;
+
+    const videoElement = document.createElement('div');
+    videoElement.innerHTML = `
+      <h2>${videoTitle}</h2>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
     `;
-  }).join('');
-  messageContainer.insertAdjacentHTML('beforeend', videosHTML);
+    messageContainer.appendChild(videoElement);
+  });
   messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
 
+async handleJokeQuery(query) {
+  try {
+    const url = `https://v2.jokeapi.dev/joke/Any?lang=fr&amount=${query}`;
+    const response = await axios.get(url);
+    console.log(response.data);
+
+    if (response.data) {
+      this.renderJokes(response.data);
+    } else {
+      console.error('Aucune blague trouvée.');
+    }
+  } catch (error) {
+    console.error('Une erreur est survenue lors de la récupération des données :', error);
+  }
+}
+
+
+async renderJokes(jokeData) {
+  const messageContainer = document.querySelector('.message-container');
+
+  if (jokeData && !jokeData.error) {
+    if (jokeData.jokes) {
+      // Cas où vous avez plusieurs blagues
+      jokeData.jokes.forEach(joke => {
+        this.renderSingleJoke(joke, messageContainer);
+      });
+    } else {
+      // Cas où vous avez une seule blague
+      this.renderSingleJoke(jokeData, messageContainer);
+    }
+
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+  } else {
+    console.error('Une erreur est survenue lors de la récupération des blagues.');
+  }
+}
+
+renderSingleJoke(joke, container) {
+  let jokeHTML = '';
+
+  if (joke.type === 'twopart') {
+    jokeHTML = `
+    <div class="jokemessage">
+    <div class="jokeimg">
+    <img src="${this.botUrl}" alt="">
+    </div>
+      <div class="joke">
+        <p class="joke-setup">${joke.setup}
+          <span class="joke-toggle" onclick="toggleAnswer(this)"><i class="fa-solid fa-angle-down"></i></span>
+        </p>
+        <p class="joke-answer" style="display: none;">Réponse: ${joke.delivery}</p>
+
+        <p class='jokeheure'> ${this.getCurrentTime()}</p>
+      </div>
+      </div>
+    `;
+  } else {
+    jokeHTML = `
+      <div class="joke">
+        <p class="joke-setup">${joke.setup}</p>
+        <p class="joke-answer" style="display: none;">Réponse: ${joke.joke}</p>
+      </div>
+    `;
+  }
+
+  
+  container.insertAdjacentHTML('beforeend', jokeHTML);
+}
+
+
+ 
   async collectMessage() {
     try {
       const response = await axios.get(`http://localhost/messages/${this.itemId}`);

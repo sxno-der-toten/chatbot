@@ -17,5 +17,20 @@
   <div id="root" >
   </div>
   
+  <script>function toggleAnswer(element) {
+    const answerElement = element.parentElement.nextElementSibling;
+    const iconElement = element.querySelector('i');
+  
+    if (answerElement.style.display === 'none') {
+      answerElement.style.display = 'block';
+      iconElement.classList.remove('fa-angle-down');
+      iconElement.classList.add('fa-angle-up');
+    } else {
+      answerElement.style.display = 'none';
+      iconElement.classList.remove('fa-angle-up');
+      iconElement.classList.add('fa-angle-down');
+    }
+  }
+  </script>
 </body>
 </html>
