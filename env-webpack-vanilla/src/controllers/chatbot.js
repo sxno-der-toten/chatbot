@@ -11,22 +11,7 @@ import { HELP_1, HELP_2, HELP_3 } from '../views/help';
 import loader from '../views/loaderMessage';
 
 
-async function getYtbVideos(query) {
-  try {
-    const apiKey = 'AIzaSyBN3rlHPlzu9BihMlplYvFeBra7l4lM0KI';
-    const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&type=video&part=snippet&q=${query}`;
-    const response = await axios.get(apiUrl);
-    
-    if (response.status !== 200) {
-      throw new Error('Erreur lors de la récupération des données de l\'API YouTube');
-    }
 
-    return response.data.items;
-  } catch (error) {
-    console.error('Une erreur est survenue lors de la récupération des vidéos musicales :', error);
-    return null;
-  }
-}
 class Chatbot {
   constructor(params) {
     this.el = document.querySelector('#root');
@@ -71,6 +56,11 @@ class Chatbot {
     }
   };
 
+  handleSearch() {
+  
+  }
+  
+
   handleEnterKeyPress(event) {
     if (event.key === 'Enter') {
       const message = document.getElementById
@@ -83,6 +73,7 @@ class Chatbot {
         this.helpCommandeShow(message, heure, this.itemId);
         this.actionResponse(message, heure, this.itemId);
         this.sendMessageToServer(message, heure, type ,url);
+
         if (message.toLowerCase().startsWith('wiki:') || message.toLowerCase().startsWith('wiki :')) {
           const query = message.slice(message.indexOf(':') + 1).trim();
           this.handleMultipleWikiQueries(query, heure);
@@ -206,33 +197,49 @@ async handleWikiQuery(query, heure) {
     const proxyUrl = 'https://api.allorigins.win/get?url=';
     const apiUrl = `https://fr.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&titles=${query}`;
     const response = await fetch(proxyUrl + encodeURIComponent(apiUrl));
-    
+    const type = 0 ;
+    const url = this.botUrl;
     const data = await response.json();
-    console.log('Data from Wikipedia API:', data);
 
-    // Extraction des données JSON de la propriété 'contents'
     const jsonData = JSON.parse(data.contents);
 
-    // Maintenant, vous pouvez accéder aux données comme vous l'avez fait auparavant
     const pageId = jsonData.query && jsonData.query.pages ? Object.keys(jsonData.query.pages)[0] : null;
     const page = pageId ? jsonData.query.pages[pageId] : null;
     const wikiExtract = page ? page.extract || 'Aucun résultat trouvé sur Wikipédia.' : 'Aucun résultat trouvé sur Wikipédia.';
 
+    
     const botMessageElement = bot_message(this.botUrl, wikiExtract, heure);
     const messageContainer = document.querySelector('.message-container');
     messageContainer.insertAdjacentHTML('beforeend', botMessageElement);
     messageContainer.scrollTop = messageContainer.scrollHeight;
+    this.sendMessageToServer(wikiExtract, this.getCurrentTime(), type, this.botUrl);
   } catch (error) {
     console.error('Erreur lors de la recherche sur Wikipédia :', error);
   }
 }
 
-async handleYtbQuery(query, heure) {
+async  getYtbVideos(query) {
   try {
-    const musicVideos = await getYtbVideos(query); // Correction ici
+    const apiKey = 'AIzaSyBN3rlHPlzu9BihMlplYvFeBra7l4lM0KI';
+    const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&type=video&part=snippet&q=${query}`;
+    const response = await axios.get(apiUrl);
+    
+    if (response.status !== 200) {
+      throw new Error('Erreur lors de la récupération des données de l\'API YouTube');
+    }
+
+    return response.data.items;
+  } catch (error) {
+    console.error('Une erreur est survenue lors de la récupération des vidéos musicales :', error);
+    return null;
+  }
+}
+
+async handleYtbQuery(query) {
+  try {
+    const musicVideos = await this.getYtbVideos(query); 
     if (musicVideos) {
-      console.log('Vidéos YouTube trouvées :', musicVideos);
-      this.renderYtbVideos(musicVideos); // Appel à la méthode renderYtbVideos
+      this.renderYtbVideos(musicVideos); 
     } else {
       console.log('Aucune vidéo YouTube trouvée.');
     }
@@ -246,16 +253,24 @@ async renderYtbVideos(ytbVideos) {
   ytbVideos.forEach(item => {
     const videoTitle = item.snippet.title;
     const videoId = item.id.videoId;
-    const videoThumbnailUrl = item.snippet.thumbnails.default.url;
-
     const videoElement = document.createElement('div');
-    videoElement.innerHTML = `
-      <h2>${videoTitle}</h2>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-    `;
+    videoElement.classList.add('video-container');
+
+    videoElement.innerHTML = ` 
+    <div class="ytbimg">
+    <img src="${this.botUrl}" alt="">
+    </div>
+    <div class='allFrame'>
+    <h2 class="frameTitle">${videoTitle}</h2>
+      <iframe class="ytb_iframe" width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+      <p class='ytbheure'> ${this.getCurrentTime()}</p>
+      </div>
+      `
+    ;
     messageContainer.appendChild(videoElement);
   });
   messageContainer.scrollTop = messageContainer.scrollHeight;
+  
 }
 
 
@@ -263,7 +278,6 @@ async handleJokeQuery(query) {
   try {
     const url = `https://v2.jokeapi.dev/joke/Any?lang=fr&amount=${query}`;
     const response = await axios.get(url);
-    console.log(response.data);
 
     if (response.data) {
       this.renderJokes(response.data);
@@ -347,7 +361,7 @@ renderSingleJoke(joke, container) {
 
   async sendMessageToServer(message, heure, type, url) {
     try {
-      if (type === "0") {
+      if (type === 1) {
         const response = await axios.post(`http://localhost/messages/${this.itemId}`, {
           message: message,
           heure: heure,
@@ -384,7 +398,8 @@ renderSingleJoke(joke, container) {
     let content = '';
     let usernav = '';
     let messgbar = '';
-    let botmssg = '';
+    let messageContainer ='';
+    
 
     if (!this.isClicked) {
       content = acceuil();
@@ -392,6 +407,9 @@ renderSingleJoke(joke, container) {
     } else {
       usernav = userNavbar(this.botUrl, this.botName);
       messgbar = message_bar();
+      messageContainer = ` <div class="message-container">
+      <!-- Les messages utilisateur, du bot et API seront ajoutés ici -->
+    </div>`;
      
     }
 
@@ -408,9 +426,7 @@ renderSingleJoke(joke, container) {
       <div class="droites col-9">
         ${content}
         ${usernav}
-        <div class="message-container">
-          <!-- Les messages utilisateur, du bot et API seront ajoutés ici -->
-        </div>
+        ${messageContainer}
         ${messgbar}
       </div>
     </div>
@@ -426,7 +442,6 @@ renderSingleJoke(joke, container) {
     
       
       const messageList = await this.collectMessage();
-      console.log(messageList);
     
       if (messageList && messageList.length > 0) {
         
@@ -488,6 +503,7 @@ renderSingleJoke(joke, container) {
   async run() {
     this.render();
     document.addEventListener('click', this.handleItemClick);
+    this.handleSearch();
   }
 }
 

@@ -1,5 +1,5 @@
 export default (image, message, heure) => (`
-<div class=" col-5">
+<div class=" botMssg col-5 ">
     <div class="mssga">
         <div class="mb-1 d-flex">
             <img src="${image}" alt="" class="rounded-circle" style="width: 50px; height: 50px;">

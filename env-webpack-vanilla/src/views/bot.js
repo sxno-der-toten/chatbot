@@ -13,7 +13,7 @@ export default ({
                 <div class="text-container">
                     <div class="mt-3">
                         <h5>${nom}</h5>
-                        <p>${mssg}</p>
+                        <p class='messageTaille'>${mssg.length > 20 ? mssg.slice(0, 20) + '...' : mssg}</p>
                     </div>
                 </div>
             </div>
